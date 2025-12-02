@@ -164,3 +164,67 @@ docker compose logs -f sedona
 Open VS Code and set your project directory as the working directory. Open the Jupyter notebook with the *introduction to Apache Sedona* in VS Code (you may need to install the Jupyter extension in VS Code). On the top right press "select kernel" or try to run the first code cell. You'll be prompted to select a kernel, select *Existing Jupyter Server...*, enter the URL to the Jupyter server at `http://localhost:8888`, press yes to confirm the http server, set a name "localhost" and select the Python 3 kernel.
 
 **Now head over and continue in the juypter notebook "Sedona PostGIS.ipynb".**
+
+
+# import data in DB
+
+## import US_Accidents_March23_100rows.csv
+Create new table:
+
+```
+CREATE TABLE public.us_accidents_100 (
+  ID                text,
+  Source            text,
+  Severity          integer,
+  Start_Time        timestamp,
+  End_Time          timestamp,
+  Start_Lat         double precision,
+  Start_Lng         double precision,
+  End_Lat           double precision,
+  End_Lng           double precision,
+  "Distance(mi)"    double precision,
+  Description       text,
+  Street            text,
+  City              text,
+  County            text,
+  State             text,
+  Zipcode           text,
+  Country           text,
+  Timezone          text,
+  Airport_Code      text,
+  Weather_Timestamp timestamp,
+  "Temperature(F)"  double precision,
+  "Wind_Chill(F)"   double precision,
+  "Humidity(%)"     double precision,
+  "Pressure(in)"    double precision,
+  "Visibility(mi)"  double precision,
+  Wind_Direction    text,
+  "Wind_Speed(mph)" double precision,
+  "Precipitation(in)" double precision,
+  Weather_Condition   text,
+  Amenity           boolean,
+  Bump              boolean,
+  Crossing          boolean,
+  Give_Way          boolean,
+  Junction          boolean,
+  No_Exit           boolean,
+  Railway           boolean,
+  Roundabout        boolean,
+  Station           boolean,
+  Stop              boolean,
+  Traffic_Calming   boolean,
+  Traffic_Signal    boolean,
+  Turning_Loop      boolean,
+  Sunrise_Sunset    text,
+  Civil_Twilight    text,
+  Nautical_Twilight text,
+  Astronomical_Twilight text
+);
+```
+Then import data in with import/export in pgAdmin.
+Transform long/lat in PostGIS geometry with:
+
+```
+ALTER TABLE public.us_accidents_100 ADD COLUMN geom GEOMETRY(POINT, 4326);
+UPDATE public.us_accidents_100 SET geom = ST_SetSRID(ST_MakePoint(Start_lon, Start_lat), 4326);
+```
