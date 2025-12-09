@@ -226,7 +226,7 @@ Transform long/lat in PostGIS geometry with:
 
 ```
 ALTER TABLE public.us_accidents_100 ADD COLUMN geom GEOMETRY(POINT, 4326);
-UPDATE public.us_accidents_100 SET geom = ST_SetSRID(ST_MakePoint(Start_lon, Start_lat), 4326);
+UPDATE public.us_accidents_100 SET geom = ST_SetSRID(ST_MakePoint(Start_lng, Start_lat), 4326);
 ```
 
 ## import ufo_sightings.csv
