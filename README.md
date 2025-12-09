@@ -168,7 +168,7 @@ Open VS Code and set your project directory as the working directory. Open the J
 
 # import data in DB
 
-## import US_Accidents_March23_100rows.csv
+## import US_Accidents_March23.csv
 Create new table:
 
 ```
@@ -252,3 +252,11 @@ CREATE TABLE ufo_sightings (
     dates_documented_month               INT,
     dates_documented_day                 INT
 );
+```
+Then import data in with import/export in pgAdmin. Don't forget to disable "id" while importing the data under the menu column.
+Transform long/lat in PostGIS geometry with:
+
+```
+ALTER TABLE public.ufo_sightings ADD COLUMN geom GEOMETRY(POINT, 4326);
+UPDATE public.ufo_sightings SET geom = ST_SetSRID(ST_MakePoint(location_coordinates_longitude, location_coordinates_latitude), 4326);
+```
