@@ -228,3 +228,27 @@ Transform long/lat in PostGIS geometry with:
 ALTER TABLE public.us_accidents_100 ADD COLUMN geom GEOMETRY(POINT, 4326);
 UPDATE public.us_accidents_100 SET geom = ST_SetSRID(ST_MakePoint(Start_lon, Start_lat), 4326);
 ```
+
+## import ufo_sightings.csv
+Create new table:
+
+```
+CREATE TABLE ufo_sightings (
+    id                                   BIGSERIAL PRIMARY KEY,
+    location_city                        VARCHAR(100),
+    location_state                       CHAR(2),
+    location_country                     CHAR(2),
+    data_shape                           VARCHAR(50),
+    data_encounter_duration_seconds      NUMERIC(10,1),
+    data_description_excerpt             TEXT,
+    location_coordinates_latitude        DECIMAL(9,6),
+    location_coordinates_longitude       DECIMAL(9,6),
+    dates_sighted_year                   INT,
+    dates_sighted_month                  INT,
+    dates_sighted_day                    INT,
+    dates_sighted_hour                   INT,
+    dates_sighted_minute                 INT,
+    dates_documented_year                INT,
+    dates_documented_month               INT,
+    dates_documented_day                 INT
+);
