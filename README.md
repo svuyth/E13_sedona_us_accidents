@@ -260,3 +260,28 @@ Transform long/lat in PostGIS geometry with:
 ALTER TABLE public.ufo_sightings ADD COLUMN geom GEOMETRY(POINT, 4326);
 UPDATE public.ufo_sightings SET geom = ST_SetSRID(ST_MakePoint(location_coordinates_longitude, location_coordinates_latitude), 4326);
 ```
+## import mcdonalds_locations.csv
+Create new table:
+
+```
+CREATE TABLE public.stores (
+    store_id   INTEGER PRIMARY KEY,
+    name       TEXT,
+    address    TEXT,
+    city       TEXT,
+    state      VARCHAR(2),
+    zipcode    VARCHAR(10),
+    phone      TEXT,
+    latitude   DOUBLE PRECISION,
+    longitude  DOUBLE PRECISION,
+    geom       geometry(Point, 4326)
+);
+
+```
+Then import data in with import/export in pgAdmin. Don't forget to disable "id" while importing the data under the menu column.
+Transform long/lat in PostGIS geometry with:
+
+```
+ALTER TABLE public.ufo_sightings ADD COLUMN geom GEOMETRY(POINT, 4326);
+UPDATE public.ufo_sightings SET geom = ST_SetSRID(ST_MakePoint(location_coordinates_longitude, location_coordinates_latitude), 4326);
+```
