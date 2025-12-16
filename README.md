@@ -229,7 +229,7 @@ ALTER TABLE public.us_accidents_100 ADD COLUMN geom GEOMETRY(POINT, 4326);
 UPDATE public.us_accidents_100 SET geom = ST_SetSRID(ST_MakePoint(Start_lng, Start_lat), 4326);
 ```
 
-## import ufo_sightings.csv
+<!-- ## import ufo_sightings.csv
 Create new table:
 
 ```
@@ -259,7 +259,7 @@ Transform long/lat in PostGIS geometry with:
 ```
 ALTER TABLE public.ufo_sightings ADD COLUMN geom GEOMETRY(POINT, 4326);
 UPDATE public.ufo_sightings SET geom = ST_SetSRID(ST_MakePoint(location_coordinates_longitude, location_coordinates_latitude), 4326);
-```
+``` -->
 ## import mcdonalds_locations.csv
 Create new table:
 
