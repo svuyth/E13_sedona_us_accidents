@@ -109,7 +109,7 @@ docker compose logs db
 ```
 You can also open Docker Desktop and verify if the containers are running.
 
-## Import sample data into PostGIS
+<!-- ## Import sample data into PostGIS
 
 Make sure that you're not already running another PostGIS instance on your computer (see above). The following command imports the `test-data.sql` file into the PostGIS database using the varibles defined in the `.env` file.
 
@@ -149,7 +149,7 @@ SELECT COUNT(*) FROM demo_points;
 SELECT COUNT(*) FROM demo_lines;
 SELECT COUNT(*) FROM demo_polygons;
 SELECT COUNT(*) FROM demo_multipolygons;
-```
+``` -->
 
 ## Jupyter Lab on Apache Sedona
 
@@ -166,7 +166,7 @@ Open VS Code and set your project directory as the working directory. Open the J
 **Now head over and continue in the juypter notebook "Sedona PostGIS.ipynb".**
 
 
-# import data in DB
+# Import data with pgAdmin
 
 ## import US_Accidents_March23.csv
 Create new table:
